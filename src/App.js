@@ -5,7 +5,7 @@ import "./styles/style.css";
 import MessageList from "./components/MessageList";
 
 function App() {
-  const botMessage = "ok";
+  const botMessage = { author: "bot", message: "very nice" };
   const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState({ author: "", message: "" });
 
@@ -13,6 +13,18 @@ function App() {
     setMessageList([...messageList, message]);
     setMessage({ author: "", message: "" });
   };
+
+  useEffect(() => {
+    let timerBot = setTimeout(() => {
+      if (
+        messageList.length !== 0 &&
+        messageList[messageList.length - 1].author === "me"
+      ) {
+        setMessageList([...messageList, botMessage]);
+      }
+      clearTimeout(timerBot);
+    }, 2000);
+  }, [messageList]);
 
   return (
     <div className="App">

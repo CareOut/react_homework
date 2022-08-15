@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
 import MessageForm from "./components/MessageForm";
-import Button from "./components/Button";
+
 import "./styles/style.css";
 import MessageList from "./components/MessageList";
+
+import Button from "@mui/material/Button";
+import { ChatList } from "./components/ChatList";
 
 function App() {
   const botMessage = { author: "bot", message: "very nice" };
   const [messageList, setMessageList] = useState([]);
   const [message, setMessage] = useState({ author: "", message: "" });
+  const chatList = [
+    { name: "chat_1", id: "dfg" },
+    { name: "chat_2", id: "dag" },
+    { name: "chat_3", id: "dhg" },
+  ];
 
   const createMessage = () => {
     setMessageList([...messageList, message]);
@@ -28,16 +36,28 @@ function App() {
 
   return (
     <div className="App">
-      <MessageList list={messageList} />
-      <MessageForm
-        value={message.message}
-        onChange={(e) => setMessage({ author: "me", message: e.target.value })}
-        type="text"
-        placeholder="наберите сообщение"
-      />
-      <Button className="btn" onClick={createMessage}>
-        Создать сообщение
-      </Button>
+      <ChatList chat={chatList} />
+      <div className="formMessage">
+        <MessageList list={messageList} />
+
+        <MessageForm
+          value={message.message}
+          onChange={(e) =>
+            setMessage({ author: "me", message: e.target.value })
+          }
+          type="text"
+          placeholder="наберите сообщение"
+        />
+        <Button
+          variant="contained"
+          color="success"
+          type="search"
+          onClick={createMessage}
+          style={{ margin: "15px 0px" }}
+        >
+          Создать сообщение
+        </Button>
+      </div>
     </div>
   );
 }

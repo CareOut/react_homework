@@ -1,14 +1,17 @@
 import { List, ListItem } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
-export const ChatList = ({ chat }) => {
+export const ChatList = ({ chats, chatId }) => {
   return (
     <div>
       <List>
-        {chat.map((el, index) => (
-          <ListItem sx={{ bgcolor: "grey", width: "100px" }} key={index}>
-            {el.name}
-          </ListItem>
+        {chats.map((i, id) => (
+          <Link to={`/chats/${id}`}>
+            <ListItem sx={{ bgcolor: "grey", width: "100px" }} key={i}>
+              {chats[id].name}
+            </ListItem>
+          </Link>
         ))}
       </List>
     </div>

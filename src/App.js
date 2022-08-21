@@ -3,7 +3,6 @@ import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Chats } from "./components/Chats";
 import { Profile } from "./components/Profile";
-import { Chat } from "./components/Chat";
 
 function App() {
   return (
@@ -11,8 +10,9 @@ function App() {
       <Routes>
         <Route path="/chats" element={<Chats />}></Route>
         <Route path="/profile" element={<Profile />}></Route>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/chats/:chatId" element={<Chat />}></Route>
+        <Route exact path="/" element={<HomePage />}></Route>
+        <Route exact path="/chats/:1" element={<Chats />}></Route>
+        <Route exact path="/chats/:2" element={<Chats />}></Route>
       </Routes>
     </BrowserRouter>
   );

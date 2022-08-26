@@ -1,15 +1,19 @@
 import React from "react";
 import MessageForm from "./MessageForm";
 import MessageList from "./MessageList";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "../styles/style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { messageAction } from "../store/actions";
+import { messages } from "../store/selectors";
 
-export const Chat = ({ chats }) => {
+export const Chat = () => {
+  const dispatch = useDispatch;
+  const messageList = useSelector(messages);
   const botMessage = { author: "bot", message: "very nice" };
-  const [messageList, setMessageList] = useState([]);
 
   const createMessage = (msg) => {
-    setMessageList([...messageList, msg]);
+    dispatch(messageAction(msg));
   };
 
   useEffect(() => {
@@ -18,14 +22,13 @@ export const Chat = ({ chats }) => {
         messageList.length !== 0 &&
         messageList[messageList.length - 1].author === "me"
       ) {
-        setMessageList([...messageList, botMessage]);
+        dispatch(messageAction(botMessage));
       }
       clearTimeout(timerBot);
     }, 2000);
   }, [messageList]);
   return (
     <div>
-      <h1>{chats.name}</h1>
       <MessageList list={messageList} />
       <MessageForm onSendMsg={createMessage} />
     </div>

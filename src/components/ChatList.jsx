@@ -1,10 +1,20 @@
-import { List, ListItem } from "@mui/material";
+import { Button, List, ListItem } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux/es/exports";
+import { chatsAction } from "../store/actions";
 
 export const ChatList = ({ chats }) => {
+  const dispatch = useDispatch();
+  const handleAddChat = () => {
+    dispatch(chatsAction("newChat"));
+  };
+
   return (
     <div>
+      <Button variant="contained" onClick={handleAddChat}>
+        add chat
+      </Button>
       <List>
         {chats.map((el, i) => (
           <Link to={`/chats/${el.id}`}>

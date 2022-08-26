@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { HomePage } from "./components/HomePage";
+import React from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Chats } from "./components/Chats";
+import { Profile } from "./components/Profile";
+import { useSelector } from "react-redux";
+import { chat } from "./store/selectors";
 
 function App() {
+  const chats = useSelector(chat);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/chats" element={<Chats chats={chats} />}></Route>
+        <Route path="/profile" element={<Profile />}></Route>
+        <Route exact path="/" element={<HomePage />}></Route>
+        <Route exact path="/chats/:1" element={<Chats chats={chats} />}></Route>
+        <Route exact path="/chats/:2" element={<Chats chats={chats} />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

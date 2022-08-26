@@ -1,9 +1,9 @@
 import React from "react";
-
+import { profile } from "../store/selectors";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Profile = () => {
-  const { showName, name } = useSelector((state) => state);
+  const { showName, name } = useSelector(profile);
   const dispatch = useDispatch();
   const EXAMPLE_ACTION = "EXAMPLE_ACTION";
   const setShowName = () => {

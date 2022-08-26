@@ -4,9 +4,10 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Chats } from "./components/Chats";
 import { Profile } from "./components/Profile";
 import { useSelector } from "react-redux";
+import { chat } from "./store/selectors";
 
 function App() {
-  const chats = useSelector((state) => state.chat);
+  const chats = useSelector(chat);
 
   return (
     <BrowserRouter>

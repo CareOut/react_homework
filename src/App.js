@@ -1,11 +1,11 @@
-import { HomePage } from "./components/HomePage";
+import { HomePage } from "./pages/HomePage";
 import React from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Chats } from "./components/Chats";
-import { Profile } from "./components/Profile";
+import { Chats } from "./pages/Chats";
+import { Profile } from "./pages/Profile";
 import { useSelector } from "react-redux";
 import { chat } from "./store/selectors";
-import { Dune } from "./components/Dune";
+import { Dune } from "./pages/Dune";
 
 function App() {
   const chats = useSelector(chat);

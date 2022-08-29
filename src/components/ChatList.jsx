@@ -2,7 +2,7 @@ import { Button, List, ListItem } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
-import { chatsAction } from "../store/actions";
+import { chatsAction } from "../store/actions/actions";
 
 export const ChatList = ({ chats }) => {
   const dispatch = useDispatch();

@@ -1,11 +1,11 @@
-import { profileReducer } from "./reducer";
+import { profileReducer } from "./reducers/reducer";
 import { combineReducers, createStore, compose, applyMiddleware } from "redux";
-import { chatsReducer } from "./chatsReducer";
-import { messageReducer } from "./messageReducer";
+import { chatsReducer } from "./reducers/chatsReducer";
+import { messageReducer } from "./reducers/messageReducer";
 import thunk from "redux-thunk";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { duneReducer } from "./duneReducer";
+import { duneReducer } from "./reducers/duneReducer";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

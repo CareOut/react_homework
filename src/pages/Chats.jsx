@@ -1,8 +1,8 @@
 import React from "react";
 
 import "../styles/style.css";
-import { ChatList } from "./ChatList";
-import { Chat } from "./Chat";
+import { ChatList } from "../components/ChatList";
+import { Chat } from "../components/Chat";
 
 export const Chats = ({ chats }) => {
   return (

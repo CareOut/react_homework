@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { messageAction } from "../store/actions";
+import { messageAction } from "../store/actions/actions";
 import { messages } from "../store/selectors";
 
 export default function MessageForm() {

@@ -1,4 +1,8 @@
-import { getDuneRequest, getDuneSuccess, getDuneFailure } from "./actions";
+import {
+  getDuneRequest,
+  getDuneSuccess,
+  getDuneFailure,
+} from "./actions/actions";
 
 const API_URL_PUBLIC = "https://the-dune-api.herokuapp.com/books/3";
 

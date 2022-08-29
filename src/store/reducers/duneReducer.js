@@ -2,7 +2,7 @@ import {
   GET_DUNE_REQUEST,
   GET_DUNE_SUCCESS,
   GET_DUNE_FAILURE,
-} from "./actions";
+} from "../actions/actions";
 
 export const STATUSES = {
   IDLE: 0,

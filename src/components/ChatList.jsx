@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux/es/exports";
 import { chatsAction } from "../store/actions/actions";
 
-export const ChatList = ({ chats }) => {
+export const ChatList = ({ chats, chatId }) => {
   const dispatch = useDispatch();
   const handleAddChat = () => {
     dispatch(chatsAction("newChat"));
@@ -17,8 +17,8 @@ export const ChatList = ({ chats }) => {
       </Button>
       <List>
         {chats.map((el, i) => (
-          <Link to={`/chats/${el.id}`}>
-            <ListItem sx={{ bgcolor: "grey", width: "100px" }} key={i}>
+          <Link to={`/chats/${el.id}`} key={el.id}>
+            <ListItem sx={{ bgcolor: "grey", width: "100px" }}>
               {el.name}
             </ListItem>
           </Link>

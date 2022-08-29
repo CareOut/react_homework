@@ -16,8 +16,11 @@ function App() {
         <Route exact path="/chats" element={<Chats chats={chats} />}></Route>
         <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/" element={<HomePage />}></Route>
-        <Route exact path="/chats/:1" element={<Chats chats={chats} />}></Route>
-        <Route exact path="/chats/:2" element={<Chats chats={chats} />}></Route>
+        <Route
+          exact
+          path="/chats/:chatId"
+          element={<Chats chats={chats} />}
+        ></Route>
         <Route exact path="/dune" element={<Dune />}></Route>
       </Routes>
     </BrowserRouter>

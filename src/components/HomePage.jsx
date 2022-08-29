@@ -12,6 +12,9 @@ export const HomePage = () => {
         <ListItem>
           <Link to="/profile">Profile</Link>
         </ListItem>
+        <ListItem>
+          <Link to="/dune">Dune</Link>
+        </ListItem>
       </List>
     </div>
   );

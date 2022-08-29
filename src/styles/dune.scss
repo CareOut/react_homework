@@ -1,0 +1,19 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book {
+  width: 200px;
+  height: 150px;
+  border: 1px solid green;
+  margin: 30px;
+}

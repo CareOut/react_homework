@@ -18,13 +18,14 @@ export default function MessageForm() {
 
   const addMessageWithThunk = () => (dispatch, getState) => {
     dispatch(messageAction(message));
-    setMessage({ author: "", message: "" });
+
     if (
       messageList.length !== 0 &&
       messageList[messageList.length - 1].author === "me"
     ) {
       setTimeout(() => dispatch(messageAction(botMessage)), 2000);
     }
+    setMessage({ author: "", message: "" });
   };
 
   return (

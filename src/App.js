@@ -5,6 +5,7 @@ import { Chats } from "./components/Chats";
 import { Profile } from "./components/Profile";
 import { useSelector } from "react-redux";
 import { chat } from "./store/selectors";
+import { Dune } from "./components/Dune";
 
 function App() {
   const chats = useSelector(chat);
@@ -12,11 +13,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/chats" element={<Chats chats={chats} />}></Route>
-        <Route path="/profile" element={<Profile />}></Route>
+        <Route exact path="/chats" element={<Chats chats={chats} />}></Route>
+        <Route exact path="/profile" element={<Profile />}></Route>
         <Route exact path="/" element={<HomePage />}></Route>
         <Route exact path="/chats/:1" element={<Chats chats={chats} />}></Route>
         <Route exact path="/chats/:2" element={<Chats chats={chats} />}></Route>
+        <Route exact path="/dune" element={<Dune />}></Route>
       </Routes>
     </BrowserRouter>
   );

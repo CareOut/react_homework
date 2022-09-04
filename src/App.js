@@ -1,27 +1,54 @@
 import { HomePage } from "./pages/HomePage";
 import React from "react";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Chats } from "./pages/Chats";
 import { Profile } from "./pages/Profile";
-import { useSelector } from "react-redux";
-import { chat } from "./store/selectors";
+
 import { Dune } from "./pages/Dune";
 
-function App() {
-  const chats = useSelector(chat);
+import PrivateRoute from "./hocs/PrivateRoute";
+import { Login } from "./pages/Login";
+import { SignUp } from "./pages/SignUp";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { useState, useEffect } from "react";
 
+function App() {
+  const auth = getAuth();
+  const [authed, setAuthed] = useState(false);
+  useEffect(() => {
+    const currentUser = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthed(true);
+      } else {
+        setAuthed(false);
+      }
+    });
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/chats" element={<Chats chats={chats} />}></Route>
-        <Route exact path="/profile" element={<Profile />}></Route>
-        <Route exact path="/" element={<HomePage />}></Route>
+        <Route path="/chats" element={<Chats />} />
         <Route
-          exact
+          path="/profile"
+          element={
+            <PrivateRoute auth={authed}>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<HomePage />} />
+        <Route
           path="/chats/:chatId"
-          element={<Chats chats={chats} />}
-        ></Route>
-        <Route exact path="/dune" element={<Dune />}></Route>
+          element={
+            <PrivateRoute auth={authed}>
+              <Chats />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/dune" element={<Dune />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<Navigate to={"/"} replace />} />
       </Routes>
     </BrowserRouter>
   );

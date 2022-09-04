@@ -6,25 +6,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { messageAction } from "../store/actions/actions";
 import { messages } from "../store/selectors";
 
-export default function MessageForm() {
+export default function MessageForm({ chatId }) {
   const [message, setMessage] = useState({ author: "", message: "" });
   const dispatch = useDispatch();
   const messageList = useSelector(messages);
   const botMessage = { author: "bot", message: "very nice" };
-
+  console.log(messageList);
   const createMessage = () => {
-    dispatch(addMessageWithThunk(message));
+    dispatch(addMessageWithThunk(message, chatId));
   };
 
-  const addMessageWithThunk = () => (dispatch, getState) => {
-    dispatch(messageAction(message));
-    if (
-      messageList.length !== 0 &&
-      messageList[messageList.length - 1].author !== "bot"
-    ) {
-      setTimeout(() => dispatch(messageAction(botMessage)), 2000);
-    }
-    setMessage({ author: "", message: "" });
+  const addMessageWithThunk = () => (dispatch) => {
+    dispatch(messageAction(message, chatId));
+    console.log(Object.keys(messageList));
+    let timerBot = setTimeout(() => {
+      if (
+        Object.keys(messageList).length !== 0 &&
+        Object.keys(messageList)[Object.keys(messageList).length - 1].author !==
+          "bot"
+      ) {
+        dispatch(messageAction(botMessage, chatId));
+      }
+      clearTimeout(timerBot);
+      setMessage({ author: "", message: "" });
+    }, 2000);
   };
 
   return (

@@ -16,8 +16,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   profile: profileReducer,
-  chat: chatsReducer,
-  message: messageReducer,
+  chatList: chatsReducer,
+  messages: messageReducer,
   dune: duneReducer,
 });
 

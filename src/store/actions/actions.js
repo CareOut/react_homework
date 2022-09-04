@@ -6,15 +6,13 @@ export const exampleAction = {
 const ADD_CHAT = "ADD_CHAT";
 export const chatsAction = (name) => ({
   type: ADD_CHAT,
-  chat: {
-    name,
-    id: Date.now(),
-  },
+  name,
 });
 
 const ADD_MESSAGE = "ADD_MESSAGE";
-export const messageAction = (msg) => ({
+export const messageAction = (chatId, msg) => ({
   type: ADD_MESSAGE,
+  chatId,
   msg,
 });
 
@@ -32,4 +30,25 @@ export const getDuneSuccess = (data) => ({
 export const getDuneFailure = (err) => ({
   type: GET_DUNE_FAILURE,
   payload: err,
+});
+
+const API_URL_PUBLIC = "https://the-dune-api.herokuapp.com/books/8";
+
+export const getAllBooks = () => async (dispatch) => {
+  dispatch(getDuneRequest());
+  try {
+    const res = await fetch(API_URL_PUBLIC);
+    if (!res.ok) {
+      throw new Error(`Request failed with status ${res.status}`);
+    }
+    const result = await res.json();
+    dispatch(getDuneSuccess(result));
+  } catch (err) {
+    dispatch(getDuneFailure(err.message));
+  }
+};
+
+const STORE_RESET = "STORE_RESET";
+export const resetStore = () => ({
+  type: STORE_RESET,
 });

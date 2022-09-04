@@ -1,6 +1,7 @@
 import React from "react";
 import { profile } from "../store/selectors";
 import { useSelector, useDispatch } from "react-redux";
+import { Header } from "../components/Header";
 
 export const Profile = () => {
   const { showName, name } = useSelector(profile);
@@ -11,6 +12,7 @@ export const Profile = () => {
   };
   return (
     <div>
+      <Header />
       <h4>Profile</h4>
       <input
         type="checkbox"

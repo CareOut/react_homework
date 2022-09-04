@@ -1,21 +1,11 @@
-import { List, ListItem } from "@mui/material";
 import React from "react";
-import { Link } from "react-router-dom";
+
+import { Header } from "../components/Header";
 
 export const HomePage = () => {
   return (
     <div>
-      <List>
-        <ListItem>
-          <Link to="/chats">Chats</Link>
-        </ListItem>
-        <ListItem>
-          <Link to="/profile">Profile</Link>
-        </ListItem>
-        <ListItem>
-          <Link to="/dune">Dune</Link>
-        </ListItem>
-      </List>
+      <Header />
     </div>
   );
 };

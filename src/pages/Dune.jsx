@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
-import { getAllBooks } from "../store/duneRequest";
+import { getAllBooks } from "../store/actions/actions";
 import {
   selectDune,
   selectDuneError,
@@ -9,6 +9,8 @@ import {
 } from "../store/selectors";
 import { useEffect, useCallback } from "react";
 import "../styles/dune.css";
+import { Link } from "react-router-dom";
+import { Header } from "../components/Header";
 
 export const Dune = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,7 @@ export const Dune = () => {
         <p>{books.title}</p>
         <p>{books.year}</p>
         <p>{books.author}</p>
-        <p>{books.wiki_url}</p>
+        <Link to={books.wiki_url}>{books.wiki_url}</Link>
       </div>
     ),
     []
@@ -49,5 +51,11 @@ export const Dune = () => {
     );
   }
 
-  return <div>{books.map(renderDune)}</div>;
+  return (
+    <>
+      <Header />
+
+      <div className="books">{books.map(renderDune)}</div>
+    </>
+  );
 };

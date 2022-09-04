@@ -1,13 +1,17 @@
 import { Button, List, ListItem } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux";
 import { chatsAction } from "../store/actions/actions";
+import { useSelector } from "react-redux";
+import { chatList } from "../store/selectors";
 
-export const ChatList = ({ chats, chatId }) => {
+export const ChatList = () => {
+  const chats = useSelector(chatList);
+
   const dispatch = useDispatch();
   const handleAddChat = () => {
-    dispatch(chatsAction("newChat"));
+    dispatch(chatsAction("Chat"));
   };
 
   return (
@@ -16,10 +20,11 @@ export const ChatList = ({ chats, chatId }) => {
         add chat
       </Button>
       <List>
-        {chats.map((el, i) => (
+        {chats.chatList.map((el) => (
           <Link to={`/chats/${el.id}`} key={el.id}>
             <ListItem sx={{ bgcolor: "grey", width: "100px" }}>
               {el.name}
+              {el.id}
             </ListItem>
           </Link>
         ))}

@@ -5,10 +5,10 @@ import { messages } from "../store/selectors";
 
 export default function MessageList({ chatId }) {
   const list = useSelector(messages);
-
+  console.log(list);
   return (
     <div className="messageList">
-      {Object.keys(list).map((message, index) => (
+      {list[chatId].map((message, index) => (
         <Message message={message} key={index} />
       ))}
     </div>

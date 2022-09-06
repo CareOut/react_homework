@@ -3,7 +3,7 @@ import React from "react";
 import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Chats } from "./pages/Chats";
 import { Profile } from "./pages/Profile";
-
+import { Chat } from "./components/Chat";
 import { Dune } from "./pages/Dune";
 
 import PrivateRoute from "./hocs/PrivateRoute";
@@ -41,7 +41,7 @@ function App() {
           path="/chats/:chatId"
           element={
             <PrivateRoute auth={authed}>
-              <Chats />
+              <Chat />
             </PrivateRoute>
           }
         />

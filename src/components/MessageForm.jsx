@@ -11,21 +11,21 @@ export default function MessageForm({ chatId }) {
   const dispatch = useDispatch();
   const messageList = useSelector(messages);
   const botMessage = { author: "bot", message: "very nice" };
-  console.log(messageList);
+
   const createMessage = () => {
-    dispatch(addMessageWithThunk(message, chatId));
+    dispatch(addMessageWithThunk(chatId, message));
   };
 
   const addMessageWithThunk = () => (dispatch) => {
-    dispatch(messageAction(message, chatId));
-    console.log(Object.keys(messageList));
+    dispatch(messageAction(chatId, message));
+
     let timerBot = setTimeout(() => {
       if (
         Object.keys(messageList).length !== 0 &&
         Object.keys(messageList)[Object.keys(messageList).length - 1].author !==
           "bot"
       ) {
-        dispatch(messageAction(botMessage, chatId));
+        dispatch(messageAction(chatId, botMessage));
       }
       clearTimeout(timerBot);
       setMessage({ author: "", message: "" });

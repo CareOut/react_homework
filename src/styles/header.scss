@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  width: 100%;
+  min-height: 70px;
+  background-color: rgb(138, 83, 138);
+}
+
+.header__list {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.header__list a {
+  color: bisque;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.header__btn {
+  font-size: 14px;
+}
